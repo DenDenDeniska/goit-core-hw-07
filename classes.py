@@ -19,6 +19,7 @@ class Phone(Field):
             super().__init__(value)
         else:
             raise ValueError("Телефон неверного формата")
+        
 class Birthday(Field):
     def __init__(self, value):
         try:
@@ -69,4 +70,4 @@ class AddressBook(UserDict):
         for name, record in self.data.items():
             birthday_list.append({"name": name, "birthday": record.birthday.value})
         congratulation = get_upcoming_birthdays(birthday_list)
-        return print(congratulation)
+        return congratulation

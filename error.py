@@ -3,7 +3,7 @@ def input_error(func):
         try:
             return func(*args, **kwargs)
         except ValueError:
-            return "Give me name and phone please."
+            return "Please give me name and coorect phone (10 digit)."
         except KeyError:
             return "Give me correct name"
         except IndexError:

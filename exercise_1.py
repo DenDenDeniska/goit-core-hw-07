@@ -1,17 +1,34 @@
-from classes import AddressBook, Record
+from classes import AddressBook
+from commands import *
 
-book = AddressBook()
-john_record = Record("John")
-john_record.add_phone("1234567890")
-john_record.add_phone("5555555555")
-john_record.add_birthday('20.04.2024')
-book.add_record(john_record)
-jane_record = Record("Jane")
-jane_record.add_phone("9876543210")
-book.add_record(jane_record)
-john = book.find("John")
-john.edit_phone("1234567890", "1112223333")
-found_phone = john.find_phone("5555555555")
-print(f"{john.name}: {found_phone}")
-book.delete("Jane")
-book.get_upcoming_birthdays()
+def main():
+    book = AddressBook()
+    print("Welcome to the assistant bot!")
+    while True:
+        user_input = input("Enter a command: ")
+        command, *args = parse_input(user_input)
+
+        if command in ["close", "exit"]:
+            print("Good bye!")
+            break
+        elif command == "hello":
+            print("How can I help you?")
+        elif command == "add":
+            print(add_contact(args, book))
+        elif command == "change":
+            print(change_contact(args, book))
+        elif command == "phone":
+            print(show_phone(args, book))
+        elif command == "all":
+            print(show_all(book))
+        elif command == "add-birthday":
+            print(add_birthday(args, book))
+        elif command == "show-birthday":
+            print(show_birthday(args, book))
+        elif command == "birthdays":
+            print(birthdays(book))
+        else:
+            print("Invalid command.")
+
+if __name__ == '__main__':
+    main()
